@@ -17,6 +17,10 @@ public class DialogueManager : MonoBehaviour
 
     private void DialogueEvents_OnEnterDialogue(string knotName)
     {
+        if(dialoguePlaying) return;
+        
         dialoguePlaying = true;
+
+        Debug.Log("Ingresando al dialogo [Nombre del Knot] " + knotName);
     }
 }
