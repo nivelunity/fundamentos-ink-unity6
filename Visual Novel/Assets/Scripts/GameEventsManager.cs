@@ -11,7 +11,7 @@ public class GameEventsManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError(" Instancia duplicada de BubblesMatchManager "+ transform + " - " +Instance);
+            Debug.LogError(" Instancia duplicada de GameEventsManager "+ transform + " - " +Instance);
             Destroy(gameObject);
             return;
         }
