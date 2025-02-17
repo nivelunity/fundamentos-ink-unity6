@@ -1,7 +1,6 @@
-using UnityEngine;
 using System;
 
-public class DialogueEvents : MonoBehaviour
+public class DialogueEvents 
 {
    public event Action<string> onEnterDialogue;
 
