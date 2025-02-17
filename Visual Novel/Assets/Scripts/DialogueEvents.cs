@@ -1,16 +1,12 @@
 using UnityEngine;
+using System;
 
 public class DialogueEvents : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   public event Action<string> onEnterDialogue;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public void EnterDialogue(string knotName)
+   {
+      onEnterDialogue?.Invoke(knotName);
+   }
 }
