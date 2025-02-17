@@ -1,4 +1,4 @@
 === npc ===
-Hola!
-¿Que tal la clase de hoy?
+¡Hola!
+¿Qué tal la clase de hoy?
 -> END
