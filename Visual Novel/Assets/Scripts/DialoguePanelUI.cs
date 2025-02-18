@@ -12,6 +12,20 @@ public class DialoguePanelUI : MonoBehaviour
         ResetPanel();
     }
 
+    private void OnEnable()
+    {
+        GameEventsManager.Instance.dialogueEvents.onDialogueStarted  += DialogueStarted;
+        GameEventsManager.Instance.dialogueEvents.onDisplayDialogue  += DisplayDialogue;
+        GameEventsManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.Instance.dialogueEvents.onDialogueStarted  -= DialogueStarted;
+        GameEventsManager.Instance.dialogueEvents.onDisplayDialogue  -= DisplayDialogue;
+        GameEventsManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+    }
+
     private void DialogueStarted()
     {
         contentParent.SetActive(true);
