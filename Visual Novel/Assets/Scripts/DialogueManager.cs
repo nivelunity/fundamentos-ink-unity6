@@ -34,5 +34,27 @@ public class DialogueManager : MonoBehaviour
         
         dialoguePlaying = true;
         story.ChoosePathString(knotName);
+        ContinueOrExitStory();
+    }
+
+    private void ContinueOrExitStory()
+    {
+        if (story.canContinue)
+        {
+            string dialogueLine = story.Continue();
+            Debug.Log(dialogueLine);
+        }
+        else
+        {
+            ExitDialogue();
+        }
+    }
+    
+    private void ExitDialogue()
+    {
+        Debug.Log("Exiting Dialogue");
+        dialoguePlaying = false;
+        
+        story.ResetState();
     }
 }
