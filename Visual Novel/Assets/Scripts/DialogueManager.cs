@@ -20,22 +20,13 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue += DialogueEvents_OnEnterDialogue;
         GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
     }
-
-    public void InputEvents_OnSubmitPressed(InputEventContext inputEventContext)
-    {
-        if(!inputEventContext.Equals(InputEventContext.DIALOGUE)) return;
-
-        Debug.Log(inputEventContext);
-        
-        ContinueOrExitStory();
-    }
     
     private void OnDisable()
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue -= DialogueEvents_OnEnterDialogue;
         GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
     }
-
+    
     private void DialogueEvents_OnEnterDialogue(string knotName)
     {
         if(dialoguePlaying) return;
@@ -48,7 +39,14 @@ public class DialogueManager : MonoBehaviour
         story.ChoosePathString(knotName);
         ContinueOrExitStory();
     }
-
+    
+    public void InputEvents_OnSubmitPressed(InputEventContext inputEventContext)
+    {
+        if(!inputEventContext.Equals(InputEventContext.DIALOGUE)) return;
+        
+        ContinueOrExitStory();
+    }
+  
     private void ContinueOrExitStory()
     {
         if (story.canContinue)
@@ -68,5 +66,6 @@ public class DialogueManager : MonoBehaviour
         dialoguePlaying = false;
         
         story.ResetState();
+        GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.RESET);
     }
 }

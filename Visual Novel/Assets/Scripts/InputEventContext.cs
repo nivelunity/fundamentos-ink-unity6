@@ -1,5 +1,6 @@
 public enum InputEventContext 
 {
     DEFAULT,
-    DIALOGUE
+    DIALOGUE,
+    RESET
 }

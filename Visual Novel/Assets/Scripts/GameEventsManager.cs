@@ -27,4 +27,11 @@ public class GameEventsManager : MonoBehaviour
     {
         inputEvents.SubmitPressed();
     }
+    
+    public void DialogueEvents_EnterDialogue(string knotName)
+    {
+        if(!inputEvents.inputEventContext.Equals(InputEventContext.DEFAULT)) return;
+        
+        dialogueEvents.EnterDialogue(knotName);
+    }
 }
