@@ -7,12 +7,13 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        EnterKnot();
+        InitKnot();
     }
 
-    public void EnterKnot()
+    public void InitKnot()
     {
         if(dialogueKnotName.Equals("")) return;
+        if(!GameEventsManager.Instance.inputEvents.inputEventContext.Equals(InputEventContext.DEFAULT)) return;
         
         GameEventsManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
     }

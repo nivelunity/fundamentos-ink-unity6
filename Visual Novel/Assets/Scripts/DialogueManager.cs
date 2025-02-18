@@ -18,13 +18,14 @@ public class DialogueManager : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue += DialogueEvents_OnEnterDialogue;
+        GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
     }
 
-    public void SubmitPressed()
+    public void InputEvents_OnSubmitPressed(InputEventContext inputEventContext)
     {
-        if(!dialoguePlaying) return;
+        if(!inputEventContext.Equals(InputEventContext.DIALOGUE)) return;
 
-        Debug.Log("NEXT LINE");
+        Debug.Log(inputEventContext);
         
         ContinueOrExitStory();
     }
@@ -32,6 +33,7 @@ public class DialogueManager : MonoBehaviour
     private void OnDisable()
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue -= DialogueEvents_OnEnterDialogue;
+        GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
     }
 
     private void DialogueEvents_OnEnterDialogue(string knotName)
@@ -40,6 +42,7 @@ public class DialogueManager : MonoBehaviour
         if(knotName.Equals("")) return;
         
         Debug.Log("Ingresando al dialogo [Nombre del Knot] " + knotName);
+        GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.DIALOGUE);
         
         dialoguePlaying = true;
         story.ChoosePathString(knotName);

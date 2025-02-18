@@ -1228,9 +1228,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 154982075}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-        m_MethodName: SubmitPressed
+      - m_Target: {fileID: 242771887}
+        m_TargetAssemblyTypeName: GameEventsManager, Assembly-CSharp
+        m_MethodName: InputEvents_SubmitPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

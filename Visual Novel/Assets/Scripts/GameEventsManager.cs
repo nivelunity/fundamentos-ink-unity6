@@ -6,6 +6,7 @@ public class GameEventsManager : MonoBehaviour
     public static GameEventsManager Instance { get; private set; }
 
     public DialogueEvents dialogueEvents;
+    public InputEvents inputEvents;
     
     private void Awake()
     {
@@ -19,5 +20,11 @@ public class GameEventsManager : MonoBehaviour
         Instance = this;
 
         dialogueEvents = new DialogueEvents();
+        inputEvents = new InputEvents();
+    }
+
+    public void InputEvents_SubmitPressed()
+    {
+        inputEvents.SubmitPressed();
     }
 }
