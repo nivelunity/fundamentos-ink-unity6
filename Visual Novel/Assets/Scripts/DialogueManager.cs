@@ -20,6 +20,15 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue += DialogueEvents_OnEnterDialogue;
     }
 
+    public void SubmitPressed()
+    {
+        if(!dialoguePlaying) return;
+
+        Debug.Log("NEXT LINE");
+        
+        ContinueOrExitStory();
+    }
+    
     private void OnDisable()
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue -= DialogueEvents_OnEnterDialogue;
