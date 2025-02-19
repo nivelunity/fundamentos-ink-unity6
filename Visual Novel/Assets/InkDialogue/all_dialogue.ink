@@ -5,4 +5,5 @@
     ¡Qué bueno! Me compartís tus notas.
 *[No]
     A mí tampoco. La explicación apresurada no me permitió tomar anotaciones.
+*[...]
 --> END

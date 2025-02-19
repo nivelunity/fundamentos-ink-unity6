@@ -27,6 +27,7 @@ public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        Debug.Log("SELECTED "+choiceIndex);
         GameEventsManager.Instance.dialogueEvents.UpdateChoiceIndex(choiceIndex);
     }
 }
