@@ -65,7 +65,20 @@ public class DialogueManager : MonoBehaviour
         if (story.canContinue)
         {
             string dialogueLine = story.Continue();
-            GameEventsManager.Instance.dialogueEvents.DisplayDialogue(dialogueLine, story.currentChoices);
+
+            while (IsLineBlank(dialogueLine) && story.canContinue)
+            {
+                dialogueLine = story.Continue();
+            }
+
+            if (IsLineBlank(dialogueLine) && !story.canContinue)
+            {
+                ExitDialogue();
+            }
+            else
+            { 
+                GameEventsManager.Instance.dialogueEvents.DisplayDialogue(dialogueLine, story.currentChoices);      
+            }
         }
         else if(story.currentChoices.Count == 0)
         {
@@ -81,5 +94,10 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.RESET);
         
         story.ResetState();
+    }
+
+    private bool IsLineBlank(string dialogueLine)
+    {
+        return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
     }
 }
