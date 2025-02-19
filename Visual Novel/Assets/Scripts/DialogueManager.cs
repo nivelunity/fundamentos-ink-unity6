@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Ink.Runtime;
 public class DialogueManager : MonoBehaviour
@@ -8,6 +7,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextAsset inkJson;
 
     private Story story;
+    private int currentChoiceIndex = -1;
     private bool dialoguePlaying = false;
 
     private void Awake()
@@ -19,12 +19,14 @@ public class DialogueManager : MonoBehaviour
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue += DialogueEvents_OnEnterDialogue;
         GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
+        GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex += DialogueEvents_OnUpdateChoiceIndex;
     }
     
     private void OnDisable()
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue -= DialogueEvents_OnEnterDialogue;
         GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
+        GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex += DialogueEvents_OnUpdateChoiceIndex;
     }
     
     private void DialogueEvents_OnEnterDialogue(string knotName)
@@ -46,15 +48,39 @@ public class DialogueManager : MonoBehaviour
         
         ContinueOrExitStory();
     }
+
+    private void DialogueEvents_OnUpdateChoiceIndex(int choiceIndex)
+    {
+        currentChoiceIndex = choiceIndex;
+    }
   
     private void ContinueOrExitStory()
     {
+        if (story.currentChoices.Count > 0 && currentChoiceIndex != -1)
+        {
+            story.ChooseChoiceIndex(currentChoiceIndex);
+            currentChoiceIndex = -1;
+        }
+        
         if (story.canContinue)
         {
             string dialogueLine = story.Continue();
-            GameEventsManager.Instance.dialogueEvents.DisplayDialogue(dialogueLine);
+
+            while (IsLineBlank(dialogueLine) && story.canContinue)
+            {
+                dialogueLine = story.Continue();
+            }
+
+            if (IsLineBlank(dialogueLine) && !story.canContinue)
+            {
+                ExitDialogue();
+            }
+            else
+            { 
+                GameEventsManager.Instance.dialogueEvents.DisplayDialogue(dialogueLine, story.currentChoices);      
+            }
         }
-        else
+        else if(story.currentChoices.Count == 0)
         {
             ExitDialogue();
         }
@@ -68,5 +94,10 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.RESET);
         
         story.ResetState();
+    }
+
+    private bool IsLineBlank(string dialogueLine)
+    {
+        return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
     }
 }
