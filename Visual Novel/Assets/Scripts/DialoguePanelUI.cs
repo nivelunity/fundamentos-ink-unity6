@@ -1,6 +1,7 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Ink.Runtime;
 
 public class DialoguePanelUI : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class DialoguePanelUI : MonoBehaviour
         ResetPanel();
     }
     
-    private void DisplayDialogue(string dialogueLine)
+    private void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
     {
         dialogueText.text = dialogueLine;
     }

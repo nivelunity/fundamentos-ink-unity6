@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Ink.Runtime;
 public class DialogueManager : MonoBehaviour
@@ -52,7 +51,7 @@ public class DialogueManager : MonoBehaviour
         if (story.canContinue)
         {
             string dialogueLine = story.Continue();
-            GameEventsManager.Instance.dialogueEvents.DisplayDialogue(dialogueLine);
+            GameEventsManager.Instance.dialogueEvents.DisplayDialogue(dialogueLine, story.currentChoices);
         }
         else
         {

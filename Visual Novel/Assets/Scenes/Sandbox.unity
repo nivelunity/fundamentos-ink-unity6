@@ -526,7 +526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3499013839362845845, guid: ee82ece8bb501ab49af77da294d9bc0e, type: 3}
       propertyPath: m_Name
-      value: DialogueChoiceButton1
+      value: DialogueChoiceButton2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1085,7 +1085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3499013839362845845, guid: ee82ece8bb501ab49af77da294d9bc0e, type: 3}
       propertyPath: m_Name
-      value: DialogueChoiceButton2
+      value: DialogueChoiceButton1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1677,7 +1677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3499013839362845845, guid: ee82ece8bb501ab49af77da294d9bc0e, type: 3}
       propertyPath: m_Name
-      value: DialogueChoiceButton3
+      value: DialogueChoiceButton0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2080,7 +2080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3499013839362845845, guid: ee82ece8bb501ab49af77da294d9bc0e, type: 3}
       propertyPath: m_Name
-      value: DialogueChoiceButton0
+      value: DialogueChoiceButton3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
