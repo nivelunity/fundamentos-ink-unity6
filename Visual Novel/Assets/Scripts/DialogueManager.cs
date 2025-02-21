@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Ink.Runtime;
 public class DialogueManager : MonoBehaviour
@@ -10,9 +11,18 @@ public class DialogueManager : MonoBehaviour
     private int currentChoiceIndex = -1;
     private bool dialoguePlaying = false;
 
+    private InkExternalFunctions inkExternalFunctions;
+        
     private void Awake()
     {
         story = new Story(inkJson.text);
+        inkExternalFunctions = new InkExternalFunctions();
+        inkExternalFunctions.Bind(story);
+    }
+
+    private void OnDestroy()
+    {
+        inkExternalFunctions.Unbind(story);
     }
 
     private void OnEnable()
