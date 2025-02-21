@@ -5,8 +5,16 @@ EXTERNAL GiveNotes()
 ¿Te gustó la clase de hoy?
 *[Si]
     ¡Qué bueno! Me compartís tus notas.
-    ~GiveNotes()
+    ->notes
 *[No]
     A mí tampoco. La explicación apresurada no me permitió tomar anotaciones.
 *[...]
+--> END
+
+=== notes ===
+   *[Si] 
+        ~GiveNotes()   
+        Gracias 
+    *[No]
+        :(
 --> END
