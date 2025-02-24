@@ -39,9 +39,6 @@ VAR QuestState = "REQUIREMENTS_NOT_MET"
     ¡Gracias por las notas!
 -> END
 
-
---> END
-
 === notes ===
    *[Si] 
         ~GiveNotes()   
