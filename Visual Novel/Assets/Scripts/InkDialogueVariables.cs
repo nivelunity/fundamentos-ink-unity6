@@ -13,7 +13,23 @@ public class InkDialogueVariables
         {
             Ink.Runtime.Object value = story.variablesState.GetVariableWithName(name);
             variables.Add(name, value);
-            Debug.Log("Initialized global dialogue variable "+name + " = "+ value );
+            Debug.Log("Initialized global dialogue variable "+name + " = "+ value ); 
+        }
+    }
+
+    public void UpdateVariableState(string name, Ink.Runtime.Object value)
+    {
+        if(!variables.ContainsKey(name)){ return; }
+
+        variables[name] = value;
+        Debug.Log("Updated Dialogue variable "+ name + " = " + value);
+    }
+
+    private void SyncVariablesStory(Story story)
+    {
+        foreach (KeyValuePair<string, Ink.Runtime.Object> variable in variables)
+        {
+            story.variablesState.SetGlobal(variable.Key, variable.Value);
         }
     }
 }
