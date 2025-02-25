@@ -73,6 +73,7 @@ public class DialogueManager : MonoBehaviour
 
     private void DialogueEvents_OnUpdateInkDialogueVariable(string name, Ink.Runtime.Object value)
     {
+        Debug.Log("ACTUALIZANDO DialogueEvents_OnUpdateInkDialogueVariable");
         inkDialogueVariables.UpdateVariableState(name,value);
     }
   

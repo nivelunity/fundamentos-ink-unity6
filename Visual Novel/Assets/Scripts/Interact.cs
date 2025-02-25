@@ -7,7 +7,6 @@ public class Interact: MonoBehaviour
     
     private void OnMouseUp()
     {
-        Debug.Log("Interact with "+gameObject.name);
         OnInteract?.Invoke();
     }
 }
