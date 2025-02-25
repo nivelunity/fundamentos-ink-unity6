@@ -12,12 +12,14 @@ public class DialogueManager : MonoBehaviour
     private bool dialoguePlaying = false;
 
     private InkExternalFunctions inkExternalFunctions;
+    private InkDialogueVariables inkDialogueVariables;
         
     private void Awake()
     {
         story = new Story(inkJson.text);
         inkExternalFunctions = new InkExternalFunctions();
         inkExternalFunctions.Bind(story);
+        inkDialogueVariables = new InkDialogueVariables(story);
     }
 
     private void OnDestroy()
@@ -49,6 +51,9 @@ public class DialogueManager : MonoBehaviour
         
         dialoguePlaying = true;
         story.ChoosePathString(knotName);
+        
+        inkDialogueVariables.SyncVariablesAndStartListening(story);
+        
         ContinueOrExitStory();
     }
     
@@ -102,6 +107,8 @@ public class DialogueManager : MonoBehaviour
         
         GameEventsManager.Instance.dialogueEvents.DialogueFinished();
         GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.RESET);
+        
+        inkDialogueVariables.StopListening(story);
         
         story.ResetState();
     }
