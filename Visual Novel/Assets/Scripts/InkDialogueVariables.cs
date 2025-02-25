@@ -17,6 +17,17 @@ public class InkDialogueVariables
         }
     }
 
+    public void SyncVariablesAndStartListening(Story story)
+    {
+        SyncVariablesStory(story);
+        story.variablesState.variableChangedEvent += UpdateVariableState;
+    }
+
+    public void StopListening(Story story)
+    {
+        story.variablesState.variableChangedEvent -= UpdateVariableState;
+    }
+
     public void UpdateVariableState(string name, Ink.Runtime.Object value)
     {
         if(!variables.ContainsKey(name)){ return; }
