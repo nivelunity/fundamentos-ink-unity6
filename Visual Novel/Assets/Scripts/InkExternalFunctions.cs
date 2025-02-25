@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using Ink.Runtime;
 
 public class InkExternalFunctions 
 {
+    public static event Action onAcceptQuest;
+    
     public void Bind(Story story)
     {
         story.BindExternalFunction("GiveNotes", GiveNotes);
@@ -27,5 +30,6 @@ public class InkExternalFunctions
         Debug.Log("ACEPTASTE LA QUEST DE NOTAS");
         GameEventsManager.Instance.dialogueEvents.UpdateInkDialogueVariable("QuestState", 
             new StringValue(QuestState.IN_PROGRESS.ToString()));
+        onAcceptQuest?.Invoke();
     }
 }
