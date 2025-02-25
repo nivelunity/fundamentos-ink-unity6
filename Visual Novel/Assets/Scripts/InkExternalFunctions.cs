@@ -6,15 +6,26 @@ public class InkExternalFunctions
     public void Bind(Story story)
     {
         story.BindExternalFunction("GiveNotes", GiveNotes);
+        story.BindExternalFunction("AcceptQuest", AcceptQuest);
     }
     
     public void Unbind(Story story)
     {
         story.UnbindExternalFunction("GiveNotes");
+        story.UnbindExternalFunction("AcceptQuest");
     }
     
     private void GiveNotes()
     {
-        Debug.Log("COMPARTISTE TUS NOTAS");        
+        Debug.Log("COMPARTISTE TUS NOTAS"); 
+        GameEventsManager.Instance.dialogueEvents.UpdateInkDialogueVariable("QuestState", 
+            new StringValue(QuestState.FINISHED.ToString()));
+    }
+    
+    private void AcceptQuest()
+    {
+        Debug.Log("ACEPTASTE LA QUEST DE NOTAS");
+        GameEventsManager.Instance.dialogueEvents.UpdateInkDialogueVariable("QuestState", 
+            new StringValue(QuestState.IN_PROGRESS.ToString()));
     }
 }

@@ -1,6 +1,7 @@
 EXTERNAL GiveNotes()
+EXTERNAL AcceptQuest()
 
-VAR QuestState = "REQUIREMENTS_NOT_MET"
+VAR QuestState = "CAN_START"
 
 === npc ===
 {QuestState:
@@ -21,6 +22,7 @@ VAR QuestState = "REQUIREMENTS_NOT_MET"
     ¿Te gustó la clase de hoy?
     *[Si]
         ¡Qué bueno!¿Me podés compartir tus notas?
+        ->quest
     *[No]
         A mí tampoco. La explicación apresurada no me permitió tomar anotaciones.
     *[...]
@@ -43,6 +45,14 @@ VAR QuestState = "REQUIREMENTS_NOT_MET"
    *[Si] 
         ~GiveNotes()   
         Gracias 
+    *[No]
+        :(
+--> END
+
+=== quest ===
+   *[Si]
+        ~AcceptQuest()
+        ¿Creo que no las tenes con vos?
     *[No]
         :(
 --> END
