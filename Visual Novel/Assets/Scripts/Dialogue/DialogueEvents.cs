@@ -9,6 +9,7 @@ public class DialogueEvents
    public event Action<string, List<Choice>> onDisplayDialogue;
    public event Action onDialogueFinished; 
    public event Action<int> onUpdateChoiceIndex;
+   public event Action<string, Ink.Runtime.Object> onUpdateInkDialogueVariable;
 
    public void EnterDialogue(string knotName)
    {
@@ -29,5 +30,9 @@ public class DialogueEvents
    public void UpdateChoiceIndex(int choiceIndex)
    {
       onUpdateChoiceIndex?.Invoke(choiceIndex);
+   }
+   public void UpdateInkDialogueVariable(string name, Ink.Runtime.Object value)
+   {
+      onUpdateInkDialogueVariable?.Invoke(name,value);
    }
 }

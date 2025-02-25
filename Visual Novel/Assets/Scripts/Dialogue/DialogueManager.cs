@@ -12,12 +12,14 @@ public class DialogueManager : MonoBehaviour
     private bool dialoguePlaying = false;
 
     private InkExternalFunctions inkExternalFunctions;
+    private InkDialogueVariables inkDialogueVariables;
         
     private void Awake()
     {
         story = new Story(inkJson.text);
         inkExternalFunctions = new InkExternalFunctions();
         inkExternalFunctions.Bind(story);
+        inkDialogueVariables = new InkDialogueVariables(story);
     }
 
     private void OnDestroy()
@@ -30,13 +32,15 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue += DialogueEvents_OnEnterDialogue;
         GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
         GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex += DialogueEvents_OnUpdateChoiceIndex;
+        GameEventsManager.Instance.dialogueEvents.onUpdateInkDialogueVariable += DialogueEvents_OnUpdateInkDialogueVariable;
     }
     
     private void OnDisable()
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue -= DialogueEvents_OnEnterDialogue;
-        GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
-        GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex += DialogueEvents_OnUpdateChoiceIndex;
+        GameEventsManager.Instance.inputEvents.onSubmitPressed -= InputEvents_OnSubmitPressed;
+        GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex -= DialogueEvents_OnUpdateChoiceIndex;
+        GameEventsManager.Instance.dialogueEvents.onUpdateInkDialogueVariable -= DialogueEvents_OnUpdateInkDialogueVariable;
     }
     
     private void DialogueEvents_OnEnterDialogue(string knotName)
@@ -49,6 +53,9 @@ public class DialogueManager : MonoBehaviour
         
         dialoguePlaying = true;
         story.ChoosePathString(knotName);
+        
+        inkDialogueVariables.SyncVariablesAndStartListening(story);
+        
         ContinueOrExitStory();
     }
     
@@ -62,6 +69,12 @@ public class DialogueManager : MonoBehaviour
     private void DialogueEvents_OnUpdateChoiceIndex(int choiceIndex)
     {
         currentChoiceIndex = choiceIndex;
+    }
+
+    private void DialogueEvents_OnUpdateInkDialogueVariable(string name, Ink.Runtime.Object value)
+    {
+        Debug.Log("ACTUALIZANDO DialogueEvents_OnUpdateInkDialogueVariable");
+        inkDialogueVariables.UpdateVariableState(name,value);
     }
   
     private void ContinueOrExitStory()
@@ -102,6 +115,8 @@ public class DialogueManager : MonoBehaviour
         
         GameEventsManager.Instance.dialogueEvents.DialogueFinished();
         GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.RESET);
+        
+        inkDialogueVariables.StopListening(story);
         
         story.ResetState();
     }
