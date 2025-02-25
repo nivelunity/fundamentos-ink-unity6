@@ -32,13 +32,15 @@ public class DialogueManager : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue += DialogueEvents_OnEnterDialogue;
         GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
         GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex += DialogueEvents_OnUpdateChoiceIndex;
+        GameEventsManager.Instance.dialogueEvents.onUpdateInkDialogueVariable += DialogueEvents_OnUpdateInkDialogueVariable;
     }
     
     private void OnDisable()
     {
         GameEventsManager.Instance.dialogueEvents.onEnterDialogue -= DialogueEvents_OnEnterDialogue;
-        GameEventsManager.Instance.inputEvents.onSubmitPressed += InputEvents_OnSubmitPressed;
-        GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex += DialogueEvents_OnUpdateChoiceIndex;
+        GameEventsManager.Instance.inputEvents.onSubmitPressed -= InputEvents_OnSubmitPressed;
+        GameEventsManager.Instance.dialogueEvents.onUpdateChoiceIndex -= DialogueEvents_OnUpdateChoiceIndex;
+        GameEventsManager.Instance.dialogueEvents.onUpdateInkDialogueVariable -= DialogueEvents_OnUpdateInkDialogueVariable;
     }
     
     private void DialogueEvents_OnEnterDialogue(string knotName)
@@ -67,6 +69,11 @@ public class DialogueManager : MonoBehaviour
     private void DialogueEvents_OnUpdateChoiceIndex(int choiceIndex)
     {
         currentChoiceIndex = choiceIndex;
+    }
+
+    private void DialogueEvents_OnUpdateInkDialogueVariable(string name, Ink.Runtime.Object value)
+    {
+        inkDialogueVariables.UpdateVariableState(name,value);
     }
   
     private void ContinueOrExitStory()
