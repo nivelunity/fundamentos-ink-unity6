@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 27071978}
   - component: {fileID: 27071977}
   m_Layer: 0
-  m_Name: Background Room 2
+  m_Name: Background Room 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 51457917}
   - component: {fileID: 51457918}
   m_Layer: 0
-  m_Name: Background Room 0
+  m_Name: Background Room 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 117551509}
   - component: {fileID: 117551508}
   m_Layer: 0
-  m_Name: Background Room 1
+  m_Name: Background Room 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2055,6 +2055,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BtnNextRight
       objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1782456032}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoNextRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NavigationManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameEventsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8124175705786318434, guid: 923bd82e376954348a394995807d4e19, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2645,6 +2673,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1782456030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1782456031}
+  - component: {fileID: 1782456032}
+  m_Layer: 0
+  m_Name: NavigationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1782456031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782456030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782456032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782456030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d85df7114e272a4abc39bb76857701e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rooms:
+  - {fileID: 27071978}
+  - {fileID: 51457917}
+  - {fileID: 117551509}
+  camera: {fileID: 1355320103}
+  roomNumber: 1
 --- !u!1 &1802174115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,6 +2966,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BtnNextLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1782456032}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoPrevRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535362811309557586, guid: 923bd82e376954348a394995807d4e19, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NavigationManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8124175705786318434, guid: 923bd82e376954348a394995807d4e19, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2950,11 +3040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8124175705786318434, guid: 923bd82e376954348a394995807d4e19, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 12.359447
+      value: 12.359436
       objectReference: {fileID: 0}
     - target: {fileID: 8124175705786318434, guid: 923bd82e376954348a394995807d4e19, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12.359445
+      value: -12.359436
       objectReference: {fileID: 0}
     - target: {fileID: 8124175705786318434, guid: 923bd82e376954348a394995807d4e19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3303,9 +3393,9 @@ SceneRoots:
   - {fileID: 1355320104}
   - {fileID: 619394802}
   - {fileID: 1992456268}
+  - {fileID: 27071978}
   - {fileID: 51457917}
   - {fileID: 117551509}
-  - {fileID: 27071978}
   - {fileID: 652537381}
   - {fileID: 1192574462}
   - {fileID: 3330632311284972756}
@@ -3317,5 +3407,6 @@ SceneRoots:
   - {fileID: 656675841}
   - {fileID: 242771886}
   - {fileID: 154982074}
+  - {fileID: 1782456031}
   - {fileID: 1486577971}
   - {fileID: 522717433}
