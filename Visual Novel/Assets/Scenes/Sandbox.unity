@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6894f9bd534b04a8e2c63ba9f99381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJson: {fileID: 4900000, guid: ef176c65c9b65c24e87d99209c0dbb0b, type: 3}
+  inkJson: {fileID: 4900000, guid: 213f38b49f077a545bf6154fe4cfde6d, type: 3}
 --- !u!1 &204648944
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +583,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4746a5c5898918d4bad89b533e2bfadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &271949936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 213893949854321564, guid: 90b73b62e8639d14f9135422861bcbef, type: 3}
+  m_PrefabInstance: {fileID: 336814371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de0ddbef598d5f4b99762c9334097b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &336814371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -591,6 +602,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 213893949854321564, guid: 90b73b62e8639d14f9135422861bcbef, type: 3}
+      propertyPath: dialogueKnotName
+      value: alice
+      objectReference: {fileID: 0}
     - target: {fileID: 1464386155113965961, guid: 90b73b62e8639d14f9135422861bcbef, type: 3}
       propertyPath: m_Name
       value: DialogueTrigger Alice
@@ -750,10 +765,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1455810037349461103, guid: 3b2eee7df52673d429728e155083d141, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 6.828125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455810037349461103, guid: 3b2eee7df52673d429728e155083d141, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 12.03125
+      objectReference: {fileID: 0}
     - target: {fileID: 3317917916703246260, guid: 3b2eee7df52673d429728e155083d141, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1325488974}
+      objectReference: {fileID: 271949936}
     - target: {fileID: 3317917916703246260, guid: 3b2eee7df52673d429728e155083d141, type: 3}
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3418,6 +3441,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 213893949854321564, guid: 90b73b62e8639d14f9135422861bcbef, type: 3}
+      propertyPath: dialogueKnotName
+      value: akane
+      objectReference: {fileID: 0}
     - target: {fileID: 1464386155113965961, guid: 90b73b62e8639d14f9135422861bcbef, type: 3}
       propertyPath: m_Name
       value: DialogueTrigger Akane

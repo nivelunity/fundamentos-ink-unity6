@@ -16,7 +16,7 @@
     ¡Hola!
     ¿Te gustó la clase de hoy?
     *[Si]
-        ¡Qué bueno!¿Me podés compartir tus notas?
+        ¡Qué bueno!¿Pudiste tomar notas?
         ->quest
     *[No]
         A mí tampoco. La explicación apresurada no me permitió tomar anotaciones.
@@ -28,26 +28,19 @@
 -> END
 
 =canFinish
-    ¿Me compartís tus notas?
-    ->notes
+    ¡Ya tienes tus notas! 
+    Creo que Alice está en el Gym
 -> END
 
 =finished
-    ¡Gracias por las notas!
+    ¡Gracias por pertale las notas a mi amiga!
 -> END
 
-=== notes ===
-   *[Si] 
-        ~GiveNotes()   
-        Gracias 
-    *[No]
-        :(
---> END
 
 === quest ===
    *[Si]
         ~AcceptQuest()
-        ¿Creo que no las tenes con vos?
+        ¿Creo que mi amiga necesita las notas?
     *[No]
         :(
 --> END
