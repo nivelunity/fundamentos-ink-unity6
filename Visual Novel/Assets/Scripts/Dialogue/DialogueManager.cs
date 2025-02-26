@@ -114,7 +114,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePlaying = false;
         
         GameEventsManager.Instance.dialogueEvents.DialogueFinished();
-        GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.RESET);
+        GameEventsManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.DEFAULT);
         
         inkDialogueVariables.StopListening(story);
         
