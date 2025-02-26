@@ -33,7 +33,7 @@
 -> END
 
 =finished
-    ¡Gracias por pertale las notas a mi amiga!
+    ¡Gracias por prestarle las notas a mi amiga!
 -> END
 
 
