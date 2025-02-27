@@ -7,6 +7,7 @@ public class DialoguePanelUI : MonoBehaviour
 {
     [SerializeField] private GameObject contentParent;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private DialogueChoiceButton[] choiceButtons;
 
     private void Awake()
@@ -85,6 +86,7 @@ public class DialoguePanelUI : MonoBehaviour
     private void UpdateSpeaker(string speaker)
     {
         Debug.Log("SET SPEAKER UI "+speaker);
+        speakerText.text = speaker;
     }
     
     private void UpdatePortrait(string portrait)

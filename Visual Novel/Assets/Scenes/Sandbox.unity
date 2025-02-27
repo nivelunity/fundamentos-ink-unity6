@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentParent: {fileID: 526285326}
   dialogueText: {fileID: 1499719259}
+  speakerText: {fileID: 1468650834}
   choiceButtons:
   - {fileID: 1976936448}
   - {fileID: 866586771}
@@ -2644,7 +2645,7 @@ GameObject:
   - component: {fileID: 1468650835}
   - component: {fileID: 1468650834}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SpeakerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
