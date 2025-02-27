@@ -5,14 +5,14 @@
 }
 
 =finished
-    ¡Gracias por las notas!
+    ¡Gracias por las notas! #speaker:Alice #portrait:alice_happy
 -> END
 
 =default
-Hola, soy la amiga de Akane
+Hola, soy la amiga de Akane #speaker:Alice #portrait:alice_neutral
 *[...]
     ->END
 *{QuestState == "CAN_FINISH"}[¡Te presto mis notas!]
     ~GiveNotes() 
-    ¿Oh? Akane te contó... Gracias!
+    ¿Oh? Akane te contó... Gracias! #portrait:alice_happy
 ->END
