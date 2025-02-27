@@ -19,6 +19,9 @@ public class DialoguePanelUI : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onDialogueStarted  += DialogueStarted;
         GameEventsManager.Instance.dialogueEvents.onDisplayDialogue  += DisplayDialogue;
         GameEventsManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
+        GameEventsManager.Instance.dialogueEvents.onUpdateSpeaker += UpdateSpeaker;
+        GameEventsManager.Instance.dialogueEvents.onUpdatePortrait += UpdatePortrait;
+
     }
 
     private void OnDisable()
@@ -26,6 +29,8 @@ public class DialoguePanelUI : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onDialogueStarted  -= DialogueStarted;
         GameEventsManager.Instance.dialogueEvents.onDisplayDialogue  -= DisplayDialogue;
         GameEventsManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+        GameEventsManager.Instance.dialogueEvents.onUpdateSpeaker -= UpdateSpeaker;
+        GameEventsManager.Instance.dialogueEvents.onUpdatePortrait -= UpdatePortrait;
     }
 
     private void DialogueStarted()
@@ -75,6 +80,16 @@ public class DialoguePanelUI : MonoBehaviour
             choiceButtonIndex--;
         }
 
+    }
+
+    private void UpdateSpeaker(string speaker)
+    {
+        Debug.Log("SET SPEAKER UI "+speaker);
+    }
+    
+    private void UpdatePortrait(string portrait)
+    {
+        Debug.Log("SET Portrait UI "+portrait);
     }
 
     private void ResetPanel()

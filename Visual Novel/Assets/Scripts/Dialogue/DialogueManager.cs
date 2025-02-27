@@ -132,9 +132,11 @@ public class DialogueManager : MonoBehaviour
             {
                 case SPEAKER_TAG:
                     Debug.Log("speaker="+tagValue);
+                    GameEventsManager.Instance.dialogueEvents.UpdateSpeaker(tagValue);
                     break;
                 case PORTRAIT_TAG:
                     Debug.Log("portrait="+tagValue);
+                    GameEventsManager.Instance.dialogueEvents.UpdatePortrait(tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came but is not currently being handled: "+ tag);
