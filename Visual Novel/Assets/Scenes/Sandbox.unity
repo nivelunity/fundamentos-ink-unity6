@@ -1075,6 +1075,7 @@ MonoBehaviour:
   - {fileID: 866586771}
   - {fileID: 1064403594}
   - {fileID: 517878692}
+  portraitImage: {fileID: 666708792}
 --- !u!1 &503700521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,7 +1885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -405188074561750650, guid: 84178be64edfa784384095a4a641c593, type: 3}
+  m_Sprite: {fileID: -6934452142114996886, guid: 382c3585dca336641ae8ec45ca393d08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
+using UnityEngine.UI;
 
 public class DialoguePanelUI : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private DialogueChoiceButton[] choiceButtons;
+    [SerializeField] private Image portraitImage;
 
     private void Awake()
     {
@@ -92,6 +94,7 @@ public class DialoguePanelUI : MonoBehaviour
     private void UpdatePortrait(string portrait)
     {
         Debug.Log("SET Portrait UI "+portrait);
+        portraitImage.sprite = Resources.Load<Sprite>(portrait);
     }
 
     private void ResetPanel()
