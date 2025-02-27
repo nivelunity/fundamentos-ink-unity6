@@ -1,6 +1,4 @@
 === akane === 
-#speaker:Akane #portrait:akane_neutral
-
 {QuestState:
     -"REQUIREMENTS_NOT_MET": -> requirementsNotMet
     -"CAN_START": -> canStart
@@ -15,7 +13,7 @@
 -> END
 
 =canStart
-    ¡Hola!
+    ¡Hola! #speaker:Akane #portrait:akane_neutral
     ¿Te gustó la clase de hoy?
     *[Si]
         ¡Qué bueno!¿Pudiste tomar notas? #portrait:akane_quest

@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 public class DialogueManager : MonoBehaviour
@@ -13,6 +13,9 @@ public class DialogueManager : MonoBehaviour
 
     private InkExternalFunctions inkExternalFunctions;
     private InkDialogueVariables inkDialogueVariables;
+
+    private const string SPEAKER_TAG = "speaker";
+    private const string PORTRAIT_TAG = "portrait";
         
     private void Awake()
     {
@@ -89,6 +92,8 @@ public class DialogueManager : MonoBehaviour
         {
             string dialogueLine = story.Continue();
 
+            HandleTags(story.currentTags);
+            
             while (IsLineBlank(dialogueLine) && story.canContinue)
             {
                 dialogueLine = story.Continue();
@@ -106,6 +111,35 @@ public class DialogueManager : MonoBehaviour
         else if(story.currentChoices.Count == 0)
         {
             ExitDialogue();
+        }
+    }
+
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+
+            if (splitTag.Length != 2)
+            {
+                Debug.LogError("Tag cold not be appropriately parsed: "+ tag);
+            }
+
+            string tagKey   = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch (tagKey)
+            {
+                case SPEAKER_TAG:
+                    Debug.Log("speaker="+tagValue);
+                    break;
+                case PORTRAIT_TAG:
+                    Debug.Log("portrait="+tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came but is not currently being handled: "+ tag);
+                    break;
+            }
         }
     }
     
