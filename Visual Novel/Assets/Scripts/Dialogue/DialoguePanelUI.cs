@@ -14,6 +14,8 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private Image portraitImage;
 
     [SerializeField] private float typingSpeed = 0.04f;
+
+    private Coroutine displayLineCoroutine;
     private void Awake()
     {
         ResetPanel();
@@ -51,7 +53,12 @@ public class DialoguePanelUI : MonoBehaviour
     
     private void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
     {
-        StartCoroutine(DisplayLine(dialogueLine));
+        if (displayLineCoroutine != null)
+        {
+            StopCoroutine(displayLineCoroutine);
+        }
+        
+        displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine));
 
         if (dialogueChoices.Count > choiceButtons.Length)
         {
