@@ -10,6 +10,9 @@ public class DialogueEvents
    public event Action onDialogueFinished; 
    public event Action<int> onUpdateChoiceIndex;
    public event Action<string, Ink.Runtime.Object> onUpdateInkDialogueVariable;
+   
+   public event Action<string> onUpdateSpeaker;
+   public event Action<string> onUpdatePortrait;
 
    public void EnterDialogue(string knotName)
    {
@@ -34,5 +37,14 @@ public class DialogueEvents
    public void UpdateInkDialogueVariable(string name, Ink.Runtime.Object value)
    {
       onUpdateInkDialogueVariable?.Invoke(name,value);
+   }
+   public void UpdateSpeaker(string speaker)
+   {
+      onUpdateSpeaker?.Invoke(speaker);
+   }
+   
+   public void UpdatePortrait(string portrait)
+   {
+      onUpdatePortrait?.Invoke(portrait);
    }
 }

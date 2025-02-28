@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
+using UnityEngine.UI;
 
 public class DialoguePanelUI : MonoBehaviour
 {
     [SerializeField] private GameObject contentParent;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private DialogueChoiceButton[] choiceButtons;
+    [SerializeField] private Image portraitImage;
 
     private void Awake()
     {
@@ -19,6 +22,9 @@ public class DialoguePanelUI : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onDialogueStarted  += DialogueStarted;
         GameEventsManager.Instance.dialogueEvents.onDisplayDialogue  += DisplayDialogue;
         GameEventsManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
+        GameEventsManager.Instance.dialogueEvents.onUpdateSpeaker += UpdateSpeaker;
+        GameEventsManager.Instance.dialogueEvents.onUpdatePortrait += UpdatePortrait;
+
     }
 
     private void OnDisable()
@@ -26,6 +32,8 @@ public class DialoguePanelUI : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onDialogueStarted  -= DialogueStarted;
         GameEventsManager.Instance.dialogueEvents.onDisplayDialogue  -= DisplayDialogue;
         GameEventsManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+        GameEventsManager.Instance.dialogueEvents.onUpdateSpeaker -= UpdateSpeaker;
+        GameEventsManager.Instance.dialogueEvents.onUpdatePortrait -= UpdatePortrait;
     }
 
     private void DialogueStarted()
@@ -75,6 +83,18 @@ public class DialoguePanelUI : MonoBehaviour
             choiceButtonIndex--;
         }
 
+    }
+
+    private void UpdateSpeaker(string speaker)
+    {
+        Debug.Log("SET SPEAKER UI "+speaker);
+        speakerText.text = speaker;
+    }
+    
+    private void UpdatePortrait(string portrait)
+    {
+        Debug.Log("SET Portrait UI "+portrait);
+        portraitImage.sprite = Resources.Load<Sprite>(portrait);
     }
 
     private void ResetPanel()

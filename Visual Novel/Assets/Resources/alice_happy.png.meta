@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9afe7e2a7b62c404492d75db71b3138b
+guid: 605233e320b4ae047b5ad090d46f9ff8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3409627298591119722
-    second: ac06_0
+      213: 2639994453265816622
+    second: alice_happy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ac06_0
+      name: alice_happy_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 46
-        width: 391
-        height: 408
+        x: 89
+        y: 62
+        width: 329
+        height: 368
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 696600379029ea0d0800000000000000
-      internalID: -3409627298591119722
+      spriteID: e2c19ebc7f423a420800000000000000
+      internalID: 2639994453265816622
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      alice_happy_0: 2639994453265816622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
