@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class DialoguePanelUI : MonoBehaviour
 {
     [SerializeField] private GameObject contentParent;
+    [SerializeField] private GameObject nextLineButton;
+    [SerializeField] private GameObject choicesContainer;
+    
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private DialogueChoiceButton[] choiceButtons;
@@ -16,9 +19,10 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.04f;
 
     private Coroutine displayLineCoroutine;
+    private bool canContinueToNextLine = false;
     private void Awake()
     {
-        ResetPanel();
+        ResetDialogueText();
     }
 
     private void OnEnable()
@@ -48,7 +52,7 @@ public class DialoguePanelUI : MonoBehaviour
     private void DialogueFinished()
     {
         contentParent.SetActive(false);
-        ResetPanel();
+        ResetDialogueText();
     }
     
     private void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
@@ -106,19 +110,25 @@ public class DialoguePanelUI : MonoBehaviour
         portraitImage.sprite = Resources.Load<Sprite>(portrait);
     }
 
-    private void ResetPanel()
+    private void ResetDialogueText()
     {
         dialogueText.text = "";
     }
 
     private IEnumerator DisplayLine(string line)
     {
-        dialogueText.text = "";
+        ResetDialogueText();
 
+        canContinueToNextLine = false;
+        nextLineButton.SetActive(false);
+        
         foreach (char letter in line.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        
+        canContinueToNextLine = true;
+        nextLineButton.SetActive(true);
     }
 }
