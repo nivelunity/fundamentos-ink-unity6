@@ -121,6 +121,7 @@ public class DialoguePanelUI : MonoBehaviour
 
         canContinueToNextLine = false;
         nextLineButton.SetActive(false);
+        choicesContainer.SetActive(false);
         
         foreach (char letter in line.ToCharArray())
         {
@@ -130,5 +131,6 @@ public class DialoguePanelUI : MonoBehaviour
         
         canContinueToNextLine = true;
         nextLineButton.SetActive(true);
+        choicesContainer.SetActive(true);
     }
 }
