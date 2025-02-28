@@ -631,6 +631,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 160}
   m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &210543650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2309395606462812483, guid: 923bd82e376954348a394995807d4e19, type: 3}
+  m_PrefabInstance: {fileID: 1701472680329593899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &242771885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,6 +1073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contentParent: {fileID: 526285326}
+  nextLineButton: {fileID: 210543650}
+  choicesContainer: {fileID: 204648944}
   dialogueText: {fileID: 1499719259}
   speakerText: {fileID: 1468650834}
   choiceButtons:
@@ -1076,6 +1083,7 @@ MonoBehaviour:
   - {fileID: 1064403594}
   - {fileID: 517878692}
   portraitImage: {fileID: 666708792}
+  typingSpeed: 0.055
 --- !u!1 &503700521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,14 +2968,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.25
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 32
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

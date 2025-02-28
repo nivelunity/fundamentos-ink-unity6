@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -7,14 +9,21 @@ using UnityEngine.UI;
 public class DialoguePanelUI : MonoBehaviour
 {
     [SerializeField] private GameObject contentParent;
+    [SerializeField] private GameObject nextLineButton;
+    [SerializeField] private GameObject choicesContainer;
+    
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerText;
     [SerializeField] private DialogueChoiceButton[] choiceButtons;
     [SerializeField] private Image portraitImage;
 
+    [SerializeField] private float typingSpeed = 0.04f;
+
+    private Coroutine displayLineCoroutine;
+    private string currentLine = "";
     private void Awake()
     {
-        ResetPanel();
+        ResetDialogueText();
     }
 
     private void OnEnable()
@@ -36,6 +45,21 @@ public class DialoguePanelUI : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onUpdatePortrait -= UpdatePortrait;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (currentLine != "")
+            {
+                TryHandleCoroutineDuplicate();
+                ResetDialogueText();
+                dialogueText.text += currentLine;
+                SetActiveInteractUI(true);
+                currentLine = "";
+            }
+        }
+    }
+
     private void DialogueStarted()
     {
         contentParent.SetActive(true);
@@ -44,12 +68,16 @@ public class DialoguePanelUI : MonoBehaviour
     private void DialogueFinished()
     {
         contentParent.SetActive(false);
-        ResetPanel();
+        ResetDialogueText();
     }
     
     private void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
     {
-        dialogueText.text = dialogueLine;
+        currentLine = dialogueLine;
+        
+        TryHandleCoroutineDuplicate();
+        
+        displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine));
 
         if (dialogueChoices.Count > choiceButtons.Length)
         {
@@ -97,8 +125,51 @@ public class DialoguePanelUI : MonoBehaviour
         portraitImage.sprite = Resources.Load<Sprite>(portrait);
     }
 
-    private void ResetPanel()
+    private void ResetDialogueText()
     {
         dialogueText.text = "";
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        ResetDialogueText();
+        SetActiveInteractUI(false);
+
+        bool isAddingRichTextTag = false;
+        
+        foreach (char letter in line.ToCharArray())
+        {
+            if (letter == '<' || isAddingRichTextTag)
+            {
+                isAddingRichTextTag = true;
+                dialogueText.text += letter;
+                if (letter == '>')
+                {
+                    isAddingRichTextTag = false;
+                }
+            }
+            else
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+        }
+
+        SetActiveInteractUI(true);
+        currentLine = "";
+    }
+
+    private void SetActiveInteractUI(bool status)
+    {
+        nextLineButton.SetActive(status);
+        choicesContainer.SetActive(status);
+    }
+
+    private void TryHandleCoroutineDuplicate()
+    {
+        if (displayLineCoroutine != null)
+        {
+            StopCoroutine(displayLineCoroutine);
+        }
     }
 }
