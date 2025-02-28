@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.04f;
 
     private Coroutine displayLineCoroutine;
-    private bool canContinueToNextLine = false;
+    private string currentLine = "";
     private void Awake()
     {
         ResetDialogueText();
@@ -44,6 +45,20 @@ public class DialoguePanelUI : MonoBehaviour
         GameEventsManager.Instance.dialogueEvents.onUpdatePortrait -= UpdatePortrait;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (currentLine != "")
+            {
+                TryHandleCoroutineDuplicate();
+                dialogueText.text += currentLine;
+                SetActiveInteractUI(true);
+                currentLine = "";
+            }
+        }
+    }
+
     private void DialogueStarted()
     {
         contentParent.SetActive(true);
@@ -57,10 +72,9 @@ public class DialoguePanelUI : MonoBehaviour
     
     private void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
     {
-        if (displayLineCoroutine != null)
-        {
-            StopCoroutine(displayLineCoroutine);
-        }
+        currentLine = dialogueLine;
+        
+        TryHandleCoroutineDuplicate();
         
         displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine));
 
@@ -118,19 +132,29 @@ public class DialoguePanelUI : MonoBehaviour
     private IEnumerator DisplayLine(string line)
     {
         ResetDialogueText();
-
-        canContinueToNextLine = false;
-        nextLineButton.SetActive(false);
-        choicesContainer.SetActive(false);
+        SetActiveInteractUI(false);
         
         foreach (char letter in line.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
-        
-        canContinueToNextLine = true;
-        nextLineButton.SetActive(true);
-        choicesContainer.SetActive(true);
+
+        SetActiveInteractUI(true);
+        currentLine = "";
+    }
+
+    private void SetActiveInteractUI(bool status)
+    {
+        nextLineButton.SetActive(status);
+        choicesContainer.SetActive(status);
+    }
+
+    private void TryHandleCoroutineDuplicate()
+    {
+        if (displayLineCoroutine != null)
+        {
+            StopCoroutine(displayLineCoroutine);
+        }
     }
 }
