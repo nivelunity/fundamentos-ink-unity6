@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -12,6 +13,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private DialogueChoiceButton[] choiceButtons;
     [SerializeField] private Image portraitImage;
 
+    [SerializeField] private float typingSpeed = 0.04f;
     private void Awake()
     {
         ResetPanel();
@@ -49,7 +51,7 @@ public class DialoguePanelUI : MonoBehaviour
     
     private void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
     {
-        dialogueText.text = dialogueLine;
+        StartCoroutine(DisplayLine(dialogueLine));
 
         if (dialogueChoices.Count > choiceButtons.Length)
         {
@@ -100,5 +102,16 @@ public class DialoguePanelUI : MonoBehaviour
     private void ResetPanel()
     {
         dialogueText.text = "";
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        dialogueText.text = "";
+
+        foreach (char letter in line.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
     }
 }
