@@ -52,6 +52,7 @@ public class DialoguePanelUI : MonoBehaviour
             if (currentLine != "")
             {
                 TryHandleCoroutineDuplicate();
+                ResetDialogueText();
                 dialogueText.text += currentLine;
                 SetActiveInteractUI(true);
                 currentLine = "";
@@ -133,11 +134,25 @@ public class DialoguePanelUI : MonoBehaviour
     {
         ResetDialogueText();
         SetActiveInteractUI(false);
+
+        bool isAddingRichTextTag = false;
         
         foreach (char letter in line.ToCharArray())
         {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            if (letter == '<' || isAddingRichTextTag)
+            {
+                isAddingRichTextTag = true;
+                dialogueText.text += letter;
+                if (letter == '>')
+                {
+                    isAddingRichTextTag = false;
+                }
+            }
+            else
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
 
         SetActiveInteractUI(true);
