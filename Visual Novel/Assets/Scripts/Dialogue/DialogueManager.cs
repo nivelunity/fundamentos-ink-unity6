@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
@@ -22,6 +23,8 @@ public class DialogueManager : MonoBehaviour
         story = new Story(inkJson.text);
         inkExternalFunctions = new InkExternalFunctions();
         inkExternalFunctions.Bind(story);
+        
+        PersistenceManager.Instance.TryLoadStoryState(story);
         inkDialogueVariables = new InkDialogueVariables(story);
     }
 
@@ -160,5 +163,11 @@ public class DialogueManager : MonoBehaviour
     private bool IsLineBlank(string dialogueLine)
     {
         return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
+    }
+
+    private void OnApplicationQuit()
+    {
+        inkDialogueVariables.SyncVariablesStory(story);
+        PersistenceManager.Instance.SaveStoryState(story);
     }
 }
