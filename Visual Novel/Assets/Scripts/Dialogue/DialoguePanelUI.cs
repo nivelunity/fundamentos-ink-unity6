@@ -52,8 +52,7 @@ public class DialoguePanelUI : MonoBehaviour
             if (currentLine != "")
             {
                 TryHandleCoroutineDuplicate();
-                ResetDialogueText();
-                dialogueText.text += currentLine;
+                dialogueText.maxVisibleCharacters = currentLine.Length;
                 SetActiveInteractUI(true);
                 currentLine = "";
             }
@@ -135,6 +134,9 @@ public class DialoguePanelUI : MonoBehaviour
         ResetDialogueText();
         SetActiveInteractUI(false);
 
+        dialogueText.text = currentLine;
+        dialogueText.maxVisibleCharacters = 0;
+
         bool isAddingRichTextTag = false;
         
         foreach (char letter in line.ToCharArray())
@@ -142,7 +144,6 @@ public class DialoguePanelUI : MonoBehaviour
             if (letter == '<' || isAddingRichTextTag)
             {
                 isAddingRichTextTag = true;
-                dialogueText.text += letter;
                 if (letter == '>')
                 {
                     isAddingRichTextTag = false;
@@ -150,7 +151,7 @@ public class DialoguePanelUI : MonoBehaviour
             }
             else
             {
-                dialogueText.text += letter;
+                dialogueText.maxVisibleCharacters++;
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
