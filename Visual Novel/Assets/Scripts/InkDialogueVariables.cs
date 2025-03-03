@@ -36,7 +36,7 @@ public class InkDialogueVariables
         Debug.Log("Updated Dialogue variable "+ name + " = " + value);
     }
 
-    private void SyncVariablesStory(Story story)
+    public void SyncVariablesStory(Story story)
     {
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in variables)
         {
