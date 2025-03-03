@@ -1,0 +1,2 @@
+EXTERNAL GiveNotes()
+EXTERNAL AcceptQuest()
