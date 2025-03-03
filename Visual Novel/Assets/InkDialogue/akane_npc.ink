@@ -24,16 +24,16 @@
 --> END
 
 =inProgress
-    ¿Tenes tus <b><color=\#00008B>notas</color></b>? #portrait:akane_wait
+    ¿Tenes tus <b><color=\#00008B>notas</color></b>? #speaker:Akane #portrait:akane_wait
 -> END
 
 =canFinish
-    ¡Ya tienes tus notas! #portrait:akane_quest
+    ¡Ya tienes tus notas!  #speaker:Akane #portrait:akane_quest
     Creo que <b><color=\#FF8C00>Alice</color></b> está en el <b><color=\#8b0000>Gym</color></b>
 -> END
 
 =finished
-    ¡<color=\#023020>Gracias</color> por prestarle las notas a mi amiga! #portrait:akane_thanks
+    ¡<color=\#023020>Gracias</color> por prestarle las notas a mi amiga!  #speaker:Akane #portrait:akane_thanks
 -> END
 
 
