@@ -1,16 +1,12 @@
 using UnityEngine;
+using Ink.Runtime;
 
 public class PersistenceManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   private const string saveVariablesKey = "INK_VARIABLES";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public void SaveVariables(Story story)
+   {
+      PlayerPrefs.SetString(saveVariablesKey, story.state.ToJson());
+   }
 }
