@@ -2097,7 +2097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e70a808406ccc84fa63622082af01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultAudioInfo: {fileID: 0}
+  defaultAudioInfo: {fileID: 11400000, guid: d4b562c0284da3f428349e7711475303, type: 2}
+  audioInfos: []
   makePredictable: 1
 --- !u!1 &757411384
 GameObject:

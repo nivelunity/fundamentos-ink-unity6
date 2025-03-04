@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: default
   dialogueTypingSoundClips:
-  - {fileID: 8300000, guid: 43d111202a0a58a4e948ff9856faebce, type: 3}
-  - {fileID: 8300000, guid: 3ae1c80094f64df4890b07070f4382ad, type: 3}
-  - {fileID: 8300000, guid: 7464a2c7aefd6ec4ca71156b0b268f5d, type: 3}
+  - {fileID: 8300000, guid: 7d95801423f561a4b863c6686a4e3e81, type: 3}
+  - {fileID: 8300000, guid: e19f4448642ddb3428fadd757dd31a6a, type: 3}
+  - {fileID: 8300000, guid: 11e228d34a0608c49b56d6ec63595d64, type: 3}
+  - {fileID: 8300000, guid: 8e93e0629b0f93040bcd90a668bf27e5, type: 3}
+  - {fileID: 8300000, guid: c7dc02d6c7247a148b0dd5ee12bae3d4, type: 3}
+  - {fileID: 8300000, guid: c3a51453a945f3d438aa9b1914e7f235, type: 3}
   frequencyLevel: 2
-  minPitch: 0.25
-  maxPitch: 2.25
+  minPitch: 0.75
+  maxPitch: 1.75
