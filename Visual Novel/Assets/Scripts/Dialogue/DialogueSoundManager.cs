@@ -30,7 +30,7 @@ public class DialogueSoundManager : MonoBehaviour
 
         Instance = this;
         audioSource = GetComponent<AudioSource>();
-        currentAudioInfo = defaultAudioInfo;
+        ResetAudioConfig();
     }
 
     private void Start()
@@ -61,7 +61,6 @@ public class DialogueSoundManager : MonoBehaviour
         {
             Debug.LogWarning("Failed to find audio info for id: "+id);
         }
-
     }
     
     public void PlayDialogueSoundClip(int currentDisplayedCharacterCount, char currentCharacter)
@@ -114,5 +113,10 @@ public class DialogueSoundManager : MonoBehaviour
             
             audioSource.PlayOneShot(soundClip);
         }
+    }
+
+    public void ResetAudioConfig()
+    {
+        currentAudioInfo = defaultAudioInfo;
     }
 }
