@@ -2,26 +2,14 @@ using UnityEngine;
 
 public class DialogueSoundManager : MonoBehaviour
 {
-    [SerializeField]
-    private AudioClip[] dialogueTypingSoundClips;
+    [SerializeField] private DialogueAudioInfoSO defaultAudioInfo;
 
     [SerializeField]
     private bool makePredictable;
     
-    [SerializeField]
-    [Range(1,5)]
-    private int frequencyLevel = 2;
-    
-    [SerializeField]
-    [Range(-3,3)]
-    private float minPitch = 0.5f;
-    
-    [SerializeField]
-    [Range(-3,3)]
-    private float maxPitch = 3f;
-    
     public static DialogueSoundManager Instance { get; private set; }
 
+    private DialogueAudioInfoSO currentAudioInfo;
     private AudioSource audioSource;
     
     private void Awake()
@@ -35,16 +23,23 @@ public class DialogueSoundManager : MonoBehaviour
 
         Instance = this;
         audioSource = GetComponent<AudioSource>();
+        currentAudioInfo = defaultAudioInfo;
     }
 
     public void PlayDialogueSoundClip(int currentDisplayedCharacterCount, char currentCharacter)
     {
         if(audioSource.isPlaying) return;
 
-        AudioClip soundClip = null;
+        int frequencyLevel = currentAudioInfo.frequencyLevel;
         
         if (currentDisplayedCharacterCount % frequencyLevel == 0)
         {
+            AudioClip[] dialogueTypingSoundClips = currentAudioInfo.dialogueTypingSoundClips;
+            float minPitch = currentAudioInfo.minPitch;
+            float maxPitch = currentAudioInfo.maxPitch;
+            
+            AudioClip soundClip = null;
+            
             if (makePredictable)
             {
                 int hashCode = currentCharacter.GetHashCode();
@@ -77,10 +72,9 @@ public class DialogueSoundManager : MonoBehaviour
                 soundClip = dialogueTypingSoundClips[randomIndex];
                 //Random Pitch
                 audioSource.pitch = Random.Range(minPitch, maxPitch);
-
             }
+            
+            audioSource.PlayOneShot(soundClip);
         }
-        
-        audioSource.PlayOneShot(soundClip);
     }
 }
