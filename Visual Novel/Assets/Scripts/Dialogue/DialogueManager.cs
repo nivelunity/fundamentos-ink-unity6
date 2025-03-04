@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "portrait";
+    private const string AUDIO_TAG = "audio";
         
     private void Awake()
     {
@@ -141,6 +142,10 @@ public class DialogueManager : MonoBehaviour
                     Debug.Log("portrait="+tagValue);
                     GameEventsManager.Instance.dialogueEvents.UpdatePortrait(tagValue);
                     break;
+                case AUDIO_TAG:
+                    Debug.Log("audio="+tagValue);
+                    DialogueSoundManager.Instance.SetCurrentAudioInfo(tagValue);
+                    break;
                 default:
                     Debug.LogWarning("Tag came but is not currently being handled: "+ tag);
                     break;
@@ -158,6 +163,7 @@ public class DialogueManager : MonoBehaviour
         inkDialogueVariables.StopListening(story);
         
         story.ResetState();
+        DialogueSoundManager.Instance.ResetAudioConfig();
     }
 
     private bool IsLineBlank(string dialogueLine)
