@@ -6,6 +6,9 @@ public class DialogueSoundManager : MonoBehaviour
     private AudioClip[] dialogueTypingSoundClips;
 
     [SerializeField]
+    private bool makePredictable;
+    
+    [SerializeField]
     [Range(1,5)]
     private int frequencyLevel = 2;
     
@@ -34,19 +37,50 @@ public class DialogueSoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayDialogueSoundClip(int currentDisplayedCharacterCount)
+    public void PlayDialogueSoundClip(int currentDisplayedCharacterCount, char currentCharacter)
     {
         if(audioSource.isPlaying) return;
 
+        AudioClip soundClip = null;
+        
         if (currentDisplayedCharacterCount % frequencyLevel == 0)
         {
-            //Random Sound Clip
-            int randomIndex = Random.Range(0, dialogueTypingSoundClips.Length);
-            AudioClip soundClip = dialogueTypingSoundClips[randomIndex];
-            //Random Pitch
-            audioSource.pitch = Random.Range(minPitch, maxPitch);
-            //Play
-            audioSource.PlayOneShot(soundClip);
+            if (makePredictable)
+            {
+                int hashCode = currentCharacter.GetHashCode();
+                
+                // Predictable Sound Clip
+                int predictableIndex = hashCode % dialogueTypingSoundClips.Length;
+                soundClip = dialogueTypingSoundClips[predictableIndex];
+                
+                // Predictable Pitch
+                int minPitchInt = (int)(minPitch * 100);
+                int maxPitchInt = (int)(maxPitch * 100);
+                int pitchRangeInt = maxPitchInt - minPitchInt;
+                // Prevent 0 division
+                if (pitchRangeInt != 0)
+                {
+                    int predictablePitchInt = (hashCode % pitchRangeInt) + minPitchInt;
+                    float predictablePitch = predictablePitchInt / 100f;
+                    audioSource.pitch = predictablePitch;
+                }
+                else
+                {
+                    audioSource.pitch = minPitch;
+                }
+
+            }
+            else
+            {
+                //Random Sound Clip
+                int randomIndex = Random.Range(0, dialogueTypingSoundClips.Length);
+                soundClip = dialogueTypingSoundClips[randomIndex];
+                //Random Pitch
+                audioSource.pitch = Random.Range(minPitch, maxPitch);
+
+            }
         }
+        
+        audioSource.PlayOneShot(soundClip);
     }
 }
