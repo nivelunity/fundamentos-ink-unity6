@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class DialogueSoundManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    private AudioClip dialogueTypingSoundClip;
+    
+    public static DialogueSoundManager Instance { get; private set; }
+
+    private AudioSource audioSource;
+    
+    private void Awake()
     {
-        
+        if (Instance != null)
+        {
+            Debug.LogError(" Instancia duplicada de DialogueSoundManager "+ transform + " - " +Instance);
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayDialogueSoundClip()
     {
-        
+        audioSource.PlayOneShot(dialogueTypingSoundClip);
     }
 }
