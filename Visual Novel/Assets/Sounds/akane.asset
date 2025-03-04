@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049c86b8030e2434dbe5f790e674f1fc, type: 3}
   m_Name: akane
   m_EditorClassIdentifier: 
-  id: akane
+  id: akane_audio
   dialogueTypingSoundClips:
   - {fileID: 8300000, guid: f7f82f3cba32ecf43b58881efeb51c9c, type: 3}
   - {fileID: 8300000, guid: 5825ad38457afa543993c76dd8367c13, type: 3}

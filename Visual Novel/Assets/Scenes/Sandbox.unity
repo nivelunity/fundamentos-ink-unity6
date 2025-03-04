@@ -2097,8 +2097,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e70a808406ccc84fa63622082af01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultAudioInfo: {fileID: 11400000, guid: f9254a314affbf942b4495b3f53cda4b, type: 2}
-  audioInfos: []
+  defaultAudioInfo: {fileID: 11400000, guid: d4b562c0284da3f428349e7711475303, type: 2}
+  audioInfos:
+  - {fileID: 11400000, guid: f9254a314affbf942b4495b3f53cda4b, type: 2}
+  - {fileID: 11400000, guid: 549e5aa91e7f2a447928b8ca5d69e028, type: 2}
   makePredictable: 1
 --- !u!1 &757411384
 GameObject:

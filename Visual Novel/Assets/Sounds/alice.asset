@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049c86b8030e2434dbe5f790e674f1fc, type: 3}
   m_Name: alice
   m_EditorClassIdentifier: 
-  id: alice
+  id: alice_audio
   dialogueTypingSoundClips:
   - {fileID: 8300000, guid: 0bba757557e74944ebe92901495f9158, type: 3}
   - {fileID: 8300000, guid: adea982cc16ae5a40a2864b84fbd7533, type: 3}

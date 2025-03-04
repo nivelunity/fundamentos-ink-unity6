@@ -13,7 +13,7 @@
 -> END
 
 =canStart
-    ¡Hola! #speaker:Akane #portrait:akane_neutral
+    ¡Hola! #speaker:Akane #portrait:akane_neutral #audio:akane_audio
     ¿Te gustó la clase de hoy?
     *[Si]
         ¡Qué bueno!¿Pudiste tomar <b><color=\#00008B>notas</color></b>? #portrait:akane_happy
@@ -24,23 +24,23 @@
 --> END
 
 =inProgress
-    ¿Tenes tus <b><color=\#00008B>notas</color></b>? #speaker:Akane #portrait:akane_wait
+    ¿Tenes tus <b><color=\#00008B>notas</color></b>? #speaker:Akane #portrait:akane_wait #audio:akane_audio
 -> END
 
 =canFinish
-    ¡Ya tienes tus notas!  #speaker:Akane #portrait:akane_quest
+    ¡Ya tienes tus notas!  #speaker:Akane #portrait:akane_quest #audio:akane_audio
     Creo que <b><color=\#FF8C00>Alice</color></b> está en el <b><color=\#8b0000>Gym</color></b>
 -> END
 
 =finished
-    ¡<color=\#023020>Gracias</color> por prestarle las notas a mi amiga!  #speaker:Akane #portrait:akane_thanks
+    ¡<color=\#023020>Gracias</color> por prestarle las notas a mi amiga!  #speaker:Akane #portrait:akane_thanks #audio:akane_audio
 -> END
 
 
 === quest ===
    *[Si]
         ~AcceptQuest()
-        ¿Creo que mi <b><color=\#FF8C00>amiga</color></b> necesita las notas? #portrait:akane_quest
+        ¿Creo que mi <b><color=\#FF8C00>amiga</color></b> necesita las notas? #portrait:akane_quest #audio:akane_audio
     *[No]
-        Qué lástima! #portrait:akane_sad
+        Qué lástima! #portrait:akane_sad #audio:akane_audio
 --> END
