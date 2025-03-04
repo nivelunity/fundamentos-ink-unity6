@@ -1,9 +1,14 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DialogueSoundManager : MonoBehaviour
 {
     [SerializeField] private DialogueAudioInfoSO defaultAudioInfo;
 
+    [SerializeField] private DialogueAudioInfoSO[] audioInfos;
+    
     [SerializeField]
     private bool makePredictable;
     
@@ -11,6 +16,8 @@ public class DialogueSoundManager : MonoBehaviour
 
     private DialogueAudioInfoSO currentAudioInfo;
     private AudioSource audioSource;
+
+    private Dictionary<string, DialogueAudioInfoSO> audioInfoDictionary;
     
     private void Awake()
     {
@@ -26,6 +33,33 @@ public class DialogueSoundManager : MonoBehaviour
         currentAudioInfo = defaultAudioInfo;
     }
 
+    private void Start()
+    {
+        InitializeAudioInfoDictionary();
+    }
+
+    private void InitializeAudioInfoDictionary()
+    {
+        audioInfoDictionary = new Dictionary<string, DialogueAudioInfoSO>();
+        audioInfoDictionary.Add(defaultAudioInfo.id, defaultAudioInfo);
+
+        foreach (DialogueAudioInfoSO audioInfo in audioInfos)
+        {
+            audioInfoDictionary.Add(audioInfo.id, audioInfo);
+        }
+    }
+
+    public void SetCurrentAudioInfo(string id)
+    {
+        DialogueAudioInfoSO audioInfo = null;
+        audioInfoDictionary.TryGetValue(id, out audioInfo);
+        if (audioInfo != null)
+        {
+            
+        }
+
+    }
+    
     public void PlayDialogueSoundClip(int currentDisplayedCharacterCount, char currentCharacter)
     {
         if(audioSource.isPlaying) return;
