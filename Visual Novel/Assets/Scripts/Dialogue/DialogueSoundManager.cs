@@ -4,6 +4,10 @@ public class DialogueSoundManager : MonoBehaviour
 {
     [SerializeField]
     private AudioClip dialogueTypingSoundClip;
+
+    [SerializeField]
+    [Range(1,5)]
+    private int frequencyLevel = 2;
     
     public static DialogueSoundManager Instance { get; private set; }
 
@@ -22,10 +26,13 @@ public class DialogueSoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayDialogueSoundClip()
+    public void PlayDialogueSoundClip(int currentDisplayedCharacterCount)
     {
         if(audioSource.isPlaying) return;
-        
-        audioSource.PlayOneShot(dialogueTypingSoundClip);
+
+        if (currentDisplayedCharacterCount % frequencyLevel == 0)
+        {
+            audioSource.PlayOneShot(dialogueTypingSoundClip);
+        }
     }
 }

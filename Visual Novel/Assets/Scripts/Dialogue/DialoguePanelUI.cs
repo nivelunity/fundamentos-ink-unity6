@@ -151,8 +151,8 @@ public class DialoguePanelUI : MonoBehaviour
             }
             else
             {
+                DialogueSoundManager.Instance.PlayDialogueSoundClip(dialogueText.maxVisibleCharacters);
                 dialogueText.maxVisibleCharacters++;
-                DialogueSoundManager.Instance.PlayDialogueSoundClip();
                 yield return new WaitForSeconds(typingSpeed);
             }
         }
