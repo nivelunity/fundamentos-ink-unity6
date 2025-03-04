@@ -2097,7 +2097,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e70a808406ccc84fa63622082af01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueTypingSoundClip: {fileID: 8300000, guid: 43d111202a0a58a4e948ff9856faebce, type: 3}
+  dialogueTypingSoundClip: {fileID: 8300000, guid: 3cf64898e840e2d4bbbdb3274428ce1f, type: 3}
+  frequencyLevel: 2
+  minPitch: 0.5
+  maxPitch: 2
 --- !u!1 &757411384
 GameObject:
   m_ObjectHideFlags: 0

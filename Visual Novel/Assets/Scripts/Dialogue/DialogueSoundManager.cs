@@ -9,6 +9,14 @@ public class DialogueSoundManager : MonoBehaviour
     [Range(1,5)]
     private int frequencyLevel = 2;
     
+    [SerializeField]
+    [Range(-3,3)]
+    private float minPitch = 0.5f;
+    
+    [SerializeField]
+    [Range(-3,3)]
+    private float maxPitch = 3f;
+    
     public static DialogueSoundManager Instance { get; private set; }
 
     private AudioSource audioSource;
@@ -32,6 +40,7 @@ public class DialogueSoundManager : MonoBehaviour
 
         if (currentDisplayedCharacterCount % frequencyLevel == 0)
         {
+            audioSource.pitch = Random.Range(minPitch, maxPitch);
             audioSource.PlayOneShot(dialogueTypingSoundClip);
         }
     }
