@@ -55,7 +55,11 @@ public class DialogueSoundManager : MonoBehaviour
         audioInfoDictionary.TryGetValue(id, out audioInfo);
         if (audioInfo != null)
         {
-            
+            this.currentAudioInfo = audioInfo;
+        }
+        else
+        {
+            Debug.LogWarning("Failed to find audio info for id: "+id);
         }
 
     }
