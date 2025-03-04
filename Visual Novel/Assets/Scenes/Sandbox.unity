@@ -2097,13 +2097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e70a808406ccc84fa63622082af01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueTypingSoundClips:
-  - {fileID: 8300000, guid: 43d111202a0a58a4e948ff9856faebce, type: 3}
-  - {fileID: 8300000, guid: 3ae1c80094f64df4890b07070f4382ad, type: 3}
-  - {fileID: 8300000, guid: 3cf64898e840e2d4bbbdb3274428ce1f, type: 3}
-  frequencyLevel: 3
-  minPitch: 0.25
-  maxPitch: 2.25
+  defaultAudioInfo: {fileID: 0}
+  makePredictable: 1
 --- !u!1 &757411384
 GameObject:
   m_ObjectHideFlags: 0
