@@ -3,7 +3,7 @@ using UnityEngine;
 public class DialogueSoundManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip dialogueTypingSoundClip;
+    private AudioClip[] dialogueTypingSoundClips;
 
     [SerializeField]
     [Range(1,5)]
@@ -40,8 +40,13 @@ public class DialogueSoundManager : MonoBehaviour
 
         if (currentDisplayedCharacterCount % frequencyLevel == 0)
         {
+            //Random Sound Clip
+            int randomIndex = Random.Range(0, dialogueTypingSoundClips.Length);
+            AudioClip soundClip = dialogueTypingSoundClips[randomIndex];
+            //Random Pitch
             audioSource.pitch = Random.Range(minPitch, maxPitch);
-            audioSource.PlayOneShot(dialogueTypingSoundClip);
+            //Play
+            audioSource.PlayOneShot(soundClip);
         }
     }
 }
