@@ -24,6 +24,8 @@ public class DialogueSoundManager : MonoBehaviour
 
     public void PlayDialogueSoundClip()
     {
+        if(audioSource.isPlaying) return;
+        
         audioSource.PlayOneShot(dialogueTypingSoundClip);
     }
 }
